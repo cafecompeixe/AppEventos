@@ -10,11 +10,12 @@ import { Eventos } from '../../models/eventos';
 })
 export class HomePage implements OnInit {
   ngOnInit(): void {
+
     this.services.loading(async (load: Loading) => {
-      load.setContent("Buscando eventos.");
+      load.setContent("Buscando eventos...");
 
       try {
-        await this.services.webservice("eventos")
+        await this.services.webservice("eventos/ordenado")
           .then((res : Eventos[]) => {
             this.eventos = res;
           }).catch(err => { throw err });
@@ -30,7 +31,7 @@ export class HomePage implements OnInit {
     })
   }
 
-  private eventos: Eventos[] = [];
+  eventos: Eventos[] = [];
 
   constructor(public navCtrl: NavController,
     public toastCtrl: ToastController,
@@ -38,4 +39,11 @@ export class HomePage implements OnInit {
 
   }
 
+  participar(evento: Eventos){
+    //Implementar
+  }
+
+  informacoes(evento: Eventos){
+    //implementar
+  }
 }

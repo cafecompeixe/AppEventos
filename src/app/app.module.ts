@@ -8,6 +8,11 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ServicesProvider } from '../providers/services/services';
 import { HttpModule } from '@angular/http';
+import { SlidesPageModule } from '../pages/slides/slides.module';
+import { MeusEventosPageModule } from '../pages/meus-eventos/meus-eventos.module';
+import { SobrePageModule } from '../pages/sobre/sobre.module';
+import { MenuPageModule } from '../pages/menu/menu.module';
+import { TabsPageModule } from '../pages/tabs/tabs.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +22,12 @@ import { HttpModule } from '@angular/http';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    SlidesPageModule,
+    MenuPageModule,
+    TabsPageModule,
+    MeusEventosPageModule,
+    SobrePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
