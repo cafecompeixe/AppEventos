@@ -1,0 +1,11 @@
+page-mdl-informacoes-eventos {
+    ion-card.card-header{
+        position: relative;
+        margin-top: 10px;
+        ion-icon{
+            position: absolute;
+            right: 50%;
+            top: -10px;
+        }
+    }
+}

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, Loading, ToastController } from 'ionic-angular';
+import { NavController, Loading, ToastController, ModalController, Refresher } from 'ionic-angular';
 import { ServicesProvider } from '../../providers/services/services';
 import { Eventos } from '../../models/eventos';
+import { MdlInformacoesEventosPage } from '../../modals/mdl-informacoes-eventos/mdl-informacoes-eventos';
 
 @Component({
   selector: 'page-home',
@@ -10,10 +11,8 @@ import { Eventos } from '../../models/eventos';
 })
 export class HomePage implements OnInit {
   ngOnInit(): void {
-
     this.services.loading(async (load: Loading) => {
       load.setContent("Buscando eventos...");
-
       try {
         await this.services.webservice("eventos/ordenado")
           .then((res : Eventos[]) => {
@@ -26,7 +25,6 @@ export class HomePage implements OnInit {
           showCloseButton: true
         }).present();
       }
-
       load.dismiss();
     })
   }
@@ -35,8 +33,32 @@ export class HomePage implements OnInit {
 
   constructor(public navCtrl: NavController,
     public toastCtrl: ToastController,
+    public modalCtrl: ModalController,
     private services: ServicesProvider) {
 
+  }
+
+  doRefresh(refresher: Refresher) {
+    setTimeout(async () => {
+        try {
+          await this.services.webservice("eventos/ordenado")
+            .then((res : Eventos[]) => {
+              this.eventos = res;
+            }).catch(err => { throw err });
+
+            this.toastCtrl.create({
+              message: "Eventos atualizados com sucesso!",
+              duration: 1500            
+            }).present();
+        } catch (err) {
+          this.toastCtrl.create({
+            closeButtonText: "fechar",
+            message: err.message ? err.message : err,
+            showCloseButton: true
+          }).present();
+      }
+      refresher.complete();
+    }, 2000);
   }
 
   participar(evento: Eventos){
@@ -44,6 +66,6 @@ export class HomePage implements OnInit {
   }
 
   informacoes(evento: Eventos){
-    //implementar
+    this.modalCtrl.create(MdlInformacoesEventosPage, { evento: evento }).present();
   }
 }

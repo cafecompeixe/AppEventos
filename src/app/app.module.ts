@@ -13,6 +13,7 @@ import { MeusEventosPageModule } from '../pages/meus-eventos/meus-eventos.module
 import { SobrePageModule } from '../pages/sobre/sobre.module';
 import { MenuPageModule } from '../pages/menu/menu.module';
 import { TabsPageModule } from '../pages/tabs/tabs.module';
+import { MdlInformacoesEventosPageModule } from '../modals/mdl-informacoes-eventos/mdl-informacoes-eventos.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TabsPageModule } from '../pages/tabs/tabs.module';
     MenuPageModule,
     TabsPageModule,
     MeusEventosPageModule,
-    SobrePageModule
+    SobrePageModule,
+    MdlInformacoesEventosPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

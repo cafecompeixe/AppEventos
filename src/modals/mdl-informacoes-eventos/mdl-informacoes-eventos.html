@@ -1,0 +1,67 @@
+<!--
+  Generated template for the MdlInformacoesEventosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ evento.nome }}</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)="fechar()">
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngIf="evento.cEndereco">
+    <ion-card-header>
+        {{evento.cEndereco.nome_local}}
+    </ion-card-header>
+    <ion-card-content>
+      {{ evento.descricao }}
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            Data:
+          </ion-col>
+          <ion-col>
+            {{ evento.data | date: "dd/MM/yyyy" }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>
+            Endereço:
+          </ion-col>
+          <ion-col>
+            {{ evento.cEndereco.rua }} {{ evento.cEndereco.bairro }}, {{ evento.cEndereco.cidade }}/{{ evento.cEndereco.estado }}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <h6 style="text-align: center;">Atividades</h6>
+
+  <ion-card *ngFor="let atv of evento.atividades">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+            Nome:
+          </ion-col>
+          <ion-col>
+            {{ atv.nome }} - {{ atv.hora }}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{ atv.descricao }}
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

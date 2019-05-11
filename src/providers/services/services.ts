@@ -1,5 +1,5 @@
 //import { HttpClient } from '@angular/common/http';
-import { Http } from '@angular/http'
+import { Http, Headers } from '@angular/http'
 import { Injectable } from '@angular/core';
 import { LoadingController, Loading } from 'ionic-angular';
 import 'rxjs/Observable';
@@ -8,14 +8,18 @@ import { Aluno } from '../../models/aluno';
 @Injectable()
 export class ServicesProvider {
 
+  //#region Propriedades
+
   url: string = 'http://172.16.5.155:8000';
   load: Loading;
+
+  //#endregion
 
   constructor(public http: Http, public loadCtrl: LoadingController) {  }
 
   //#region Loading Controller
 
-  loading(operacao: (Loading) => void){
+  loading(operacao: (Loading: Loading) => void){
     this.load = this.loadCtrl.create({
       content: "Aguarde...",
       spinner: "bubbles"
@@ -94,6 +98,7 @@ export class ServicesProvider {
 //#region Classes e Enumerações externas
 
 class Usuario implements Aluno{
+  id: number;
   matricula: number;
   nome: string;
 }
