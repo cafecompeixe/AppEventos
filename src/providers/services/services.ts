@@ -1,5 +1,5 @@
 //import { HttpClient } from '@angular/common/http';
-import { Http, Headers } from '@angular/http'
+import { Http } from '@angular/http'
 import { Injectable } from '@angular/core';
 import { LoadingController, Loading } from 'ionic-angular';
 import 'rxjs/Observable';
@@ -10,7 +10,7 @@ export class ServicesProvider {
 
   //#region Propriedades
 
-  url: string = 'http://172.16.5.155:8000';
+  url: string = 'http://172.16.9.199:8000';
   load: Loading;
 
   //#endregion
@@ -45,22 +45,22 @@ export class ServicesProvider {
       case TipoRequisicao.GET:
         retorno = this.http.get(`${this.url}/${modulo}`).toPromise()
           .then(res => res.json())
-          .catch((err) => Promise.reject("Houve algum problema de conexão tente novamente mais tarde"));
+          .catch((err) => Promise.reject(/*"Houve algum problema de conexão tente novamente mais tarde"*/err));
         break;
       case TipoRequisicao.POST:
         retorno = this.http.post(`${this.url}/${modulo}`, dados).toPromise()
           .then(res => res.json())
-          .catch(() => Promise.reject("Houve algum problema de conexão tente novamente mais tarde"));
+          .catch((err) => Promise.reject(/*"Houve algum problema de conexão tente novamente mais tarde"*/err));
         break;
       case TipoRequisicao.PUT:
         retorno = this.http.put(`${this.url}/${modulo}`, dados).toPromise()
           .then(res => res.json())
-          .catch(() => Promise.reject("Houve algum problema de conexão tente novamente mais tarde"));
+          .catch((err) => Promise.reject(/*"Houve algum problema de conexão tente novamente mais tarde"*/err));
         break;
       case TipoRequisicao.DELETE:
         retorno =this.http.delete(`${this.url}/${modulo}`).toPromise()
           .then(res => res.json())
-          .catch(() => Promise.reject("Houve algum problema de conexão tente novamente mais tarde"));
+          .catch((err) => Promise.reject(/*"Houve algum problema de conexão tente novamente mais tarde"*/err));
         break;
     }
 
